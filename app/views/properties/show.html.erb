@@ -1,0 +1,41 @@
+<% title "Property Details" %>
+<p>
+  <strong>Title:</strong>
+  <%= @property.title %>
+</p>
+<p>
+  <strong>Location:</strong>
+  <%= @property.city %> , <%= @property.state %> <%= @property.country %>
+</p>
+<p>
+  <strong>Bedrooms:</strong>
+  <%= @property.num_beds %>
+</p>
+<p>
+  <strong>Maximum Guests:</strong>
+  <%= @property.max_guests %>
+</p>
+
+<p>
+  <strong>Minimum Stay:</strong>
+  <%= @property.min_stay %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%= @property.price %>
+</p>
+
+
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@property.lat}%2C#{@property.long}" %>
+
+<h3>Nearby Properties</h3>
+<ul>
+<% for property in @property.nearbys(10) %>
+  <li><%= link_to property.title, property %> (<%= property.distance.round(2) %> miles)</li>
+<% end %>
+</ul>
+
+<p>
+  <%= link_to "Edit", edit_property_path(@property) %> |
+  <%= link_to "Destroy", @property, :confirm => 'Are you sure?', :method => :delete %> |
+</p>

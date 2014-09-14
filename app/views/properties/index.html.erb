@@ -1,0 +1,33 @@
+<h1> Properties List </h1>
+
+<%= form_tag properties_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Near", :name => nil %>
+  </p>
+<% end %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Address</th>
+    <th>Bedrooms</th>
+    <th>Max Guests</th>
+    <th>Price</th>
+  </tr>
+  <% for property in @properties %>
+    <tr>
+      <td><%= property.title %></td>
+      <td><%= property.full_address %></td>
+      <td><%= property.bedrooms %></td>
+      <td><%= property.max_guests %></td>
+      <td><%= property.price %></td>
+
+      <td><%= link_to "Show", property %></td>
+      <td><%= link_to "Edit", edit_property_path(property) %></td>
+      <td><%= link_to "Destroy", property, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New property", new_property_path %></p>

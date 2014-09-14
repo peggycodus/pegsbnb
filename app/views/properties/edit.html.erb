@@ -1,0 +1,5 @@
+<h1>Edit Property</h1>
+
+<%= render('layouts/errors', :object => @property) %>
+
+<form action="/properties/<%= @property.id %>" method="post">
