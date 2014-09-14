@@ -11,10 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140914010530) do
+ActiveRecord::Schema.define(version: 20140914012052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "properties", force: true do |t|
+    t.string   "title"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal_code"
+    t.string   "country"
+    t.float    "lat"
+    t.float    "long"
+    t.integer  "user_id"
+    t.integer  "num_beds"
+    t.integer  "max_guests"
+    t.decimal  "price"
+    t.integer  "min_stay"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "properties", ["city"], name: "index_properties_on_city", using: :btree
+  add_index "properties", ["min_stay"], name: "index_properties_on_min_stay", using: :btree
+  add_index "properties", ["num_beds"], name: "index_properties_on_num_beds", using: :btree
+  add_index "properties", ["postal_code"], name: "index_properties_on_postal_code", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
